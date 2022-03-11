@@ -1,7 +1,3 @@
-GET http://127.0.0.1:5000/
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMGE5OGMyNDczZjMxNWVkYWFhODZlOCIsInVzZXJuYW1lIjoiZ2F1cmF2Z3QiLCJlbWFpbCI6ImdhdXJhdnlhZGF2MjYwOUBnbWFpbC5jb20iLCJpYXQiOjE2NDQ5MDU0MDN9.QsGnR1CYoFr9ONom6YgCTIvgzhukabIaKcLRGhKMLes
-
-
 ###
 POST http://127.0.0.1:5000/login
 Content-Type: application/json

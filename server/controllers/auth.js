@@ -97,7 +97,7 @@ login = async (req, res) => {
 
 resendEmail = async (req, res) => {
     const user = await User.findOne({ username: req.body.username })
-    if (user) {
+    if (user && user.status != 'Active') {
         nodemailer.sendConfirmationEmail(
             user.name,
             user.email,
@@ -105,6 +105,10 @@ resendEmail = async (req, res) => {
         );
 
         return res.status(200).send({ status: 'success', message: 'Email sent successfully' })
+
+    }
+    else if (user && user.status === 'Active') {
+        return res.status(200).send({ status: 'success', message: 'User Already Confirmed' })
 
     }
     else {
