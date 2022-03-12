@@ -9,7 +9,7 @@ register = async (req, res) => {
     const password = await bcrypt.hash(req.body.password, 10)
     const userRegister = new User({
         name: req.body.name,
-        username: req.body.username,
+        image: req.body.image,
         email: req.body.email,
         password: password,
         confirmationCode: jwt.sign({ email: req.body.email }, process.env.ACCESS_TOKEN_SECRET)
@@ -59,7 +59,7 @@ verifyUser = async (req, res) => {
 
 login = async (req, res) => {
 
-    const user = await User.findOne({ username: req.body.username }) || await User.findOne({ email: req.body.email })
+    const user = await User.findOne({ email: req.body.email })
 
 
     if (!user) {
@@ -67,7 +67,7 @@ login = async (req, res) => {
             return res.status(401).send({ status: 'error', message: 'Invalid email/password' })
         }
         else {
-            return res.status(401).send({ status: 'error', message: 'Invalid username/password' })
+            return res.status(401).send({ status: 'error', message: 'Invalid email/password' })
         }
 
     }
@@ -76,7 +76,7 @@ login = async (req, res) => {
         return res.status(401).send({
             status: 'error',
             message: "Pending Account. Please Verify Your Email!",
-            username: user.username
+            email: user.email
         });
     }
 
@@ -85,18 +85,18 @@ login = async (req, res) => {
         const token = jwt.sign(
             {
                 id: user._id,
-                username: user.username,
+                name: user.name,
                 email: user.email
             },
             process.env.ACCESS_TOKEN_SECRET
         )
         return res.status(200).send({ status: 'success', data: { accessToken: token, name: user.name, username: user.username, email: user.email } })
     }
-    res.status(401).send({ status: 'error', message: 'Invalid username/password' })
+    res.status(401).send({ status: 'error', message: 'Invalid email/password' })
 }
 
 resendEmail = async (req, res) => {
-    const user = await User.findOne({ username: req.body.username })
+    const user = await User.findOne({ email: req.body.email })
     if (user && user.status != 'Active') {
         nodemailer.sendConfirmationEmail(
             user.name,

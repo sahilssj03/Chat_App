@@ -1,6 +1,6 @@
 const User = require('../model/users.Schema')
 
-checkDuplicateEmailOrUsername = async (req, res, next) => {
+checkDuplicateEmail = async (req, res, next) => {
     var emailRegex = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
 
     function isEmailValid(email) {
@@ -27,21 +27,15 @@ checkDuplicateEmailOrUsername = async (req, res, next) => {
     }
 
     try {
-        const userName = req.body.username;
         const email = req.body.email;
         const plainTextPassword = req.body.password;
         const userWithSameEmail = await User.findOne({ email: email })
-        const userWithSameUsername = await User.findOne({ username: userName })
 
         if (!email || typeof email !== 'string' || !isEmailValid(email)) {
             res.json({ status: 'error', message: 'Invalid email' })
             return;
         }
 
-        if (!userName || typeof userName !== 'string') {
-            res.json({ status: 'error', message: 'Invalid username' })
-            return;
-        }
 
         if (!plainTextPassword || typeof plainTextPassword !== 'string') {
             res.json({ status: 'error', message: 'Invalid password' })
@@ -53,12 +47,6 @@ checkDuplicateEmailOrUsername = async (req, res, next) => {
                 status: 'error',
                 message: 'Password too small. Should be atleast 8 characters'
             })
-            return;
-        }
-
-
-        if (userWithSameUsername) {
-            res.json({ status: "error", message: "Username already exits!" });
             return;
         }
 
@@ -75,7 +63,7 @@ checkDuplicateEmailOrUsername = async (req, res, next) => {
 }
 
 const verifySignUp = {
-    checkDuplicateEmailOrUsername
+    checkDuplicateEmail
 };
 
 module.exports = verifySignUp;
