@@ -22,9 +22,9 @@ A realtime chat app built using React.js, Node.js and Socket.io. With proper aut
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
 | `name`    | `string` | **Required**.|
-| `username`| `string` | **Required**, **Unique**. |
 | `email`   | `string` | **Required**, **Unique**. |
-| `password | `string` | **Required**, **Atleast 8 characters long**. |
+| `password ` | `string` | **Required**, **Atleast 8 characters long**. |
+| `image` | `string` | Optional |
 
 #### User Login
 
@@ -34,7 +34,7 @@ A realtime chat app built using React.js, Node.js and Socket.io. With proper aut
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `username or email`| `string` | **Required**.            |
+| `email`| `string` | **Required**.            |
 | `password`| `string` | **Required**.            |
 
 #### Resend Confirmation Email
@@ -45,7 +45,7 @@ A realtime chat app built using React.js, Node.js and Socket.io. With proper aut
 
 | Parameter | Type     | Description   |
 | :-------- | :------- | :-------------|
-| `username`| `string` | **Required**. |
+| `email`| `string` | **Required**. |
 
 #### Account Confirmation 
 

@@ -5,7 +5,7 @@ const auth = require("../controllers/auth")
 
 
 // Registration Endpoint
-router.post('/register', [verifySignUp.checkDuplicateEmailOrUsername], auth.register);
+router.post('/register', [verifySignUp.checkDuplicateEmail], auth.register);
 
 // Confirmation Endpoint
 router.get("/confirm/:confirmationCode", auth.verifyUser)
