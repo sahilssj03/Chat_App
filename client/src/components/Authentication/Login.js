@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 
 import { Button, FormControl, FormLabel, Input, InputGroup, InputRightElement, VStack } from '@chakra-ui/react'
+import { useToast } from "@chakra-ui/toast";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
 
@@ -8,13 +11,59 @@ const Login = () => {
     const [password, setPassword] = useState();
     const [show, setShow] = useState(false);
     const [picLoading, setPicLoading] = useState(false);
+    const toast = useToast();
+    const history = useNavigate();
 
     const handleClick = () => {
         setShow(!show);
     }
 
-    const submitHandler = () => {
+    const submitHandler = async() => {
+        setPicLoading(true);
+        if ( !email || !password) {
+            toast({
+                title: "Please Fill all the Feilds",
+                status: "warning",
+                duration: 5000,
+                isClosable: true,
+                position: "bottom",
+            });
+            setPicLoading(false);
+            return;
+        }
 
+        try {
+            const config = {
+                headers: {
+                    "Content-type": "application/json",
+                }
+            };
+            const { data } = await axios.post("/login", {
+                email,
+                password,
+            }, config);
+            console.log(data);
+            toast({
+                title: "Login Successful",
+                status: "success",
+                duration: 5000,
+                isClosable: true,
+                position: "bottom",
+            });
+            localStorage.setItem("userInformation", JSON.stringify(data));
+            setPicLoading(false);
+            history("/chats");
+        } catch (err) {
+            toast({
+                title: "Error Occured!",
+                description: err.response.data.message,
+                status: "error",
+                duration: 5000,
+                isClosable: true,
+                position: "bottom",
+            });
+            setPicLoading(false);
+        }
     }
     return (
         <VStack spacing='5px'>
