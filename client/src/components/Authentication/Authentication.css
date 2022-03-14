@@ -1,5 +1,14 @@
 .button {
-    width: 100%;
-    color: #fff;
-    margin-top: 15px;
+  width: 100%;
+  color: #fff;
+  margin-top: 15px;
 }
+
+/* .container {
+  min-height: 100vh;
+  display: flex;
+  background-image: url("../../Images/background.png");
+  background-position: center;
+  background-size: cover;
+  color: black;
+} */
