@@ -49,8 +49,15 @@ verifyUser = async (req, res) => {
                     return;
                 }
                 else {
-                    res.status(200).send({ message: "Account Confirmed" });
-                    return
+                    const token = jwt.sign(
+                        {
+                            id: user._id,
+                            name: user.name,
+                            email: user.email
+                        },
+                        process.env.ACCESS_TOKEN_SECRET
+                    )
+                    return res.status(200).send({ status: 'success', data: { accessToken: token, name: user.name, image: user.image, email: user.email, id: user._id } })
                 }
             });
         })
@@ -90,7 +97,7 @@ login = async (req, res) => {
             },
             process.env.ACCESS_TOKEN_SECRET
         )
-        return res.status(200).send({ status: 'success', data: { accessToken: token, name: user.name, username: user.username, email: user.email } })
+        return res.status(200).send({ status: 'success', data: { accessToken: token, name: user.name, image: user.image, email: user.email, id: user._id } })
     }
     res.status(401).send({ status: 'error', message: 'Invalid email/password' })
 }
