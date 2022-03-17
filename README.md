@@ -1,5 +1,5 @@
 
-# Realtime Chat Aapp
+# Realtime Chat App
 
 A realtime chat app built using React.js, Node.js and Socket.io. With proper authentication and added functionalities like Groupchat etc.
 
