@@ -3,6 +3,7 @@ const router = express.Router()
 const { verifySignUp, verifyToken } = require('../middlewares/index');
 const auth = require("../controllers/auth")
 const user = require('../controllers/user')
+const message = require('../controllers/message')
 
 // User Registration
 router.post('/register', [verifySignUp.checkDuplicateEmail], auth.register);
@@ -42,6 +43,10 @@ router.put('/groupadd', [verifyToken.tokenValidation], user.addToGroup)
 // Remove From Group
 router.put('/groupremove', [verifyToken.tokenValidation], user.removeFromGroup)
 
+// To Send A Message
+router.post('/message', [verifyToken.tokenValidation], message.sendAMessage)
 
+// To Send A Message
+router.get('/:chatId', [verifyToken.tokenValidation], message.allMessages)
 
 module.exports = router;

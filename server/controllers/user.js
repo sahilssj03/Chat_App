@@ -3,6 +3,7 @@ const Chat = require('../model/chat.Schema')
 
 
 getallUsers = async (req, res) => {
+
     const keyword = req.query.search
         ? {
             $or: [
@@ -52,7 +53,7 @@ createChat = async (req, res) => {
         };
 
         const createdChat = await Chat.create(chatData)
-        const FullChat = await Chat.findOne({ _id: createdChat._id }).populate(
+        await Chat.findOne({ _id: createdChat._id }).populate(
             "users",
             "-password -status -confirmationCode"
         ).then(FullChat => {
