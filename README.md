@@ -141,4 +141,24 @@ Confirmation Code is already appended when user gets the email to confirm the Ac
 | `user`        | `string` | Id of the user to be removed. **Required**|
 | `id`        | `string` | Id of the group. **Required**|
 
+### Get All Messages
+
+#### Bearer Token Required and only possible if admin
+
+```http
+  GET /:chatId
+```
+### Send A Message
+
+#### Bearer Token Required and only possible if admin
+
+```http
+  POST /message
+```
+
+| Parameter | Type     | Description                |
+| :---------------| :------- | :------------------------- |
+| `chatId`        | `string` | Id of the chat, which the message is a part of. **Required**|
+| `content`        | `string` | Content of the message. **Required**|
+
 
