@@ -1,8 +1,9 @@
 const Message = require('../model/message.Schema')
 const User = require('../model/users.Schema')
+const Chat = require('../model/chat.Schema')
 
 sendAMessage = async (req, res) => {
-    const chatId = req.body.chat
+    const chatId = req.body.chatId
     const content = req.body.content
     if (!chatId || !content) {
         return res.status(400).send({ status: 'error', message: 'Invalid Data Passed' })
@@ -13,25 +14,36 @@ sendAMessage = async (req, res) => {
         sender: req.user.id
     }
 
-    await Message.create(newMessage)
-        .then(data => {
-            data.populate("sender", "name image")
-                .then(data => {
-                    data.populate("chat")
-                        .then(data => {
-                            data.chat.populate("users").then(data => {
-                                console.log(data)
-                            })
-                        })
-                })
-        })
-        .catch((err) => {
-            res.status(400).send({ status: 'error', message: err })
-        })
+    try {
+        var message = await Message.create(newMessage);
+
+        message = await message.populate("sender", "name image")
+        message = await message.populate("chat")
+        message = await User.populate(message, {
+            path: "chat.users",
+            select: "name image email",
+        });
+
+        await Chat.findByIdAndUpdate(req.body.chatId, { latestMessage: message });
+
+        res.status(200).send({ status: 'success', message: message });
+    } catch (error) {
+        res.status(400).send({ status: 'error', message: error.message })
+        throw new Error(error.message);
+    }
+
 }
 
 allMessages = async (req, res) => {
-
+    try {
+        const messages = await Message.find({ chat: req.params.chatId })
+            .populate("sender", "name image email")
+            .populate("chat");
+        res.status(200).send({ status: 'success', message: messages });
+    } catch (error) {
+        res.status(400).send({ status: 'error', message: error.message })
+        throw new Error(error.message);
+    }
 }
 
 module.exports = { sendAMessage, allMessages }
