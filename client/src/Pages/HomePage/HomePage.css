@@ -3,7 +3,7 @@
     justify-content: center;
     padding: 20px;
     background: #fff;
-    margin: 40px 0px 15px 0px;
+    margin: 0px 0px 15px 0px;
     border-radius: 15px;
     border-width: 1px;
     width: 100%;
@@ -24,4 +24,8 @@
 
 .tab {
     width: 50%;
+}
+
+.main-wrapper {
+    padding-top: 40px;
 }

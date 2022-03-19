@@ -17,7 +17,6 @@ const SignUp = () => {
     const [show, setShow] = useState(false);
     const [picLoading, setPicLoading] = useState(false);
     const toast = useToast();
-    const [username, setUsername] = useState('Vineet')
     const history = useNavigate();
 
     const handleClick = () => {
@@ -102,7 +101,6 @@ const SignUp = () => {
             };
             const { data } = await axios.post("/register", {
                 name,
-                username,
                 email,
                 password,
                 pic
