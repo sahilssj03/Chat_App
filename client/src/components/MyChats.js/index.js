@@ -12,7 +12,6 @@ import './MyChats.css';
 const MyChats = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
   const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
-  const chatData = chats.chats
 
   const toast = useToast();
 
@@ -24,7 +23,7 @@ const MyChats = ({ fetchAgain }) => {
         }
       };
       const { data } = await axios.get('/chat', config);
-      setChats(data);
+      setChats(data.chats);
       // console.log(data.chats);
     } catch (error) {
       toast({
@@ -37,7 +36,7 @@ const MyChats = ({ fetchAgain }) => {
       });
     }
   };
-
+  console.log(fetchAgain, " My Chats Fetch");
   useEffect(() => {
     setLoggedUser(JSON.parse(localStorage.getItem("userInformation")));
     fetchChats();
@@ -65,9 +64,9 @@ const MyChats = ({ fetchAgain }) => {
         borderRadius="lg"
         overflowY="hidden"
       >
-        {chatData ? (
+        {chats ? (
           <Stack overflowY="scroll">
-            {chatData.map((chat) => (
+            {chats.map((chat) => (
               <Box
                 onClick={() => setSelectedChat(chat)}
                 cursor="pointer"

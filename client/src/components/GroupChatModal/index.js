@@ -17,7 +17,8 @@ const GroupChatModal = ({ children }) => {
     const toast = useToast();
 
     const { user, chats, setChats } = ChatState();
-    console.log(user);
+    console.log(user , " user");
+    console.log(chats , " chats");
 
     const handleSearch = async (query) => {
         setSearch(query);
@@ -69,8 +70,11 @@ const GroupChatModal = ({ children }) => {
                 name: groupChatName,
                 users: JSON.stringify(selectedUsers.map((u) => u._id))
             }, config);
-            setChats([data, ...chats]);
+            console.log(data.chats, "data Chats");
+            console.log(chats, "chats");
+            setChats([data.chats, ...chats]);
             onClose();
+            console.log("Hi");
             toast({
                 title: "New Group Chat Created",
                 status: "success",
@@ -108,7 +112,7 @@ const GroupChatModal = ({ children }) => {
         setSelectedUsers([...selectedUsers, userAdd]);
     }
 
-    console.log(searchResult);
+    // console.log(searchResult);
 
     return (
         <>

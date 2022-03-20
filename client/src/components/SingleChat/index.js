@@ -30,7 +30,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             };
             const { data } = await axios.get(`/${selectedChat._id}`, config);
             setMessages(data);
-            console.log(messages);
+            // console.log(messages);
             setLoading(false);
         } catch (error) {
             toast({
@@ -46,9 +46,9 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
     useEffect(() => {
         fetchMessages();
-        console.log(messages);
-    }, [selectedChat,chats]);
-    console.log(chats);
+        setFetchAgain(!fetchAgain);
+    }, [selectedChat]);
+    // console.log(messages);
 
     const sendMessage = async (event) => {
         if (event.key === "Enter" && newMessage) {
@@ -64,8 +64,12 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                     chatId: selectedChat._id,
                     content: newMessage
                 }, config);
-                setMessages([...messages, data]);
+                // console.log(data);
+                console.log(messages.message, "Messages data");
+                console.log(data.message, "Messages Content");
+                setMessages([...messages.message, data.message]);
                 console.log(messages);
+                setFetchAgain(!fetchAgain);
             } catch (error) {
                 toast({
                     title: "Error Occured",

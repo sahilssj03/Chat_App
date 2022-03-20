@@ -35,7 +35,7 @@ const SignUp = () => {
             });
             return;
         }
-        console.log(pics);
+        // console.log(pics);
         if (pics.type === 'image/jpeg' || pics.type === 'image/png') {
             const data = new FormData();
             data.append("file", pics);
@@ -48,11 +48,11 @@ const SignUp = () => {
                 .then((res) => res.json())
                 .then((data) => {
                     setPic(data.url.toString());
-                    console.log(pic);
+                    // console.log(pic);
                     setPicLoading(false);
                 })
                 .catch((err) => {
-                    console.log(err);
+                    // console.log(err);
                     setPicLoading(false);
                 })
         }
@@ -105,7 +105,7 @@ const SignUp = () => {
                 password,
                 pic
             }, config);
-            console.log(data);
+            // console.log(data);
             toast({
                 title: "Registration Successful",
                 status: "success",
