@@ -57,7 +57,7 @@ createChat = async (req, res) => {
             "users",
             "-password -status -confirmationCode"
         ).then(FullChat => {
-            res.status(200).send(FullChat);
+            res.status(200).send({ status: 'success', chat: FullChat });
 
         }).catch(err => {
             res.status(400).send({ status: 'error', message: err })
@@ -112,8 +112,7 @@ createGroup = async (req, res) => {
         const fullGroupChat = await Chat.findOne({ _id: groupChat._id })
             .populate("users", "-password -status -confirmationCode")
             .populate("groupAdmin", "-password -status -confirmationCode");
-
-        res.status(200).send(fullGroupChat);
+        res.status(200).send({ status: 'success', chats: fullGroupChat })
     } catch (error) {
         res.status(400);
         throw new Error(error.message);
