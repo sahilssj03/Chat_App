@@ -10,7 +10,7 @@ import axios from 'axios';
 import ScrollableChat from '../ScrollableChat';
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
-    const { user, selectedChat, setSelectedChat,chats } = ChatState();
+    const { user, selectedChat, setSelectedChat, chats } = ChatState();
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(false);
     const [newMessage, setNewMessage] = useState("");
@@ -29,7 +29,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 }
             };
             const { data } = await axios.get(`/${selectedChat._id}`, config);
-            setMessages(data);
+            setMessages(data.message);
             // console.log(messages);
             setLoading(false);
         } catch (error) {
@@ -65,9 +65,9 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                     content: newMessage
                 }, config);
                 // console.log(data);
-                console.log(messages.message, "Messages data");
+                console.log(messages, "Messages data");
                 console.log(data.message, "Messages Content");
-                setMessages([...messages.message, data.message]);
+                setMessages([...messages, data.message]);
                 console.log(messages);
                 setFetchAgain(!fetchAgain);
             } catch (error) {
