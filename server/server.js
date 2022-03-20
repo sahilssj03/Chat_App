@@ -19,4 +19,16 @@ app.use(express.json())
 app.use(cors())
 
 app.use('/', routes)
-app.listen(PORT, () => { console.log(`Server is running on ${PORT}`) })
+const server = app.listen(PORT, () => { console.log(`Server is running on ${PORT}`) })
+
+const io = require('socket.io')(server, {
+  pingTimeout: 60000,
+  cors: {
+    origin: "http://localhost:3000"
+  },
+
+})
+
+io.on("connection", (socket) => {
+  console.log(socket)
+})
