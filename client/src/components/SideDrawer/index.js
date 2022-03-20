@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { BellIcon, ChevronDownIcon } from '@chakra-ui/icons';
 import { Avatar, Box, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Input, Menu, MenuButton, MenuDivider, MenuItem, MenuList, Spinner, Text, Tooltip, useToast } from '@chakra-ui/react';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDisclosure } from "@chakra-ui/hooks";
 import axios from 'axios';
 
@@ -23,17 +24,20 @@ const SideDrawer = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const history = useNavigate();
-    const { setSelectedChat,
+    const {
+        setSelectedChat,
         user,
         notification,
         setNotification,
         chats,
-        setChats } = ChatState();
+        setChats
+    } = ChatState();
 
     const logOutHandler = () => {
         localStorage.removeItem("userInformation");
         history("/");
     };
+
 
     const handleSearch = async () => {
         if (!search) {
@@ -74,18 +78,23 @@ const SideDrawer = () => {
 
     const accessChat = async (userId) => {
         console.log(userId);
+        // console.log(chats);
         try {
             setLodingChat(true);
             const config = {
                 headers: {
                     "Content-type": "application/json",
-                    Authorization: `Bearer ${user.data.token}`,
+                    Authorization: `Bearer ${user.data.accessToken}`,
                 }
             };
-            const { data } = await axios.post(`/chat`, { userId }, config);
+            const { data } = await axios.post("/chat", {
+                id: userId
+            }, config);
+            console.log(data);
 
             if (!chats.find((val) => val._id === data._id))
                 setChats([data, ...chats]);
+            // console.log(chats);
             setSelectedChat(data);
             setLodingChat(false);
             onClose();
@@ -97,7 +106,7 @@ const SideDrawer = () => {
                 duration: 5000,
                 isClosable: true,
                 position: "bottom-left",
-              });
+            });
         }
     };
 

@@ -1,0 +1,12 @@
+.modal-header {
+    font-size: 35px !important;
+    font-family: 'Work sans';
+    display: flex;
+    justify-content: center;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

@@ -1,0 +1,6 @@
+.modal-header-component {
+    display: flex;
+    font-size: 35px !important;
+    font-family: 'Work sans';
+    justify-content: center;
+}
