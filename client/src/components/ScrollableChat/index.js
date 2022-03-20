@@ -8,9 +8,7 @@ import './ScrollableChat.css';
 const ScrollableChat = ({ messages }) => {
     const messagesData = messages.message;
     const { user } = ChatState();
-    console.log(messagesData, );
-    console.log(user.data.id);
-    // console.log(isSameSenderMargin(messagesData, messagesData[0], 0, user.data.id));
+    console.log(messagesData, "Messages New Data");
     return (
         <ScrollableFeed>
             {messagesData && messagesData.map((m, i) => 

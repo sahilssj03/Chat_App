@@ -65,7 +65,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
                 config
             );
 
-            console.log(data._id, data);
+            // console.log(data._id, data);
             // setSelectedChat("");
             setSelectedChat(data);
             setFetchAgain(!fetchAgain);
@@ -73,7 +73,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
         } catch (error) {
             toast({
                 title: "Error Occured!",
-                description: error.response.data.message,
+                // description: error.response.data.message,
                 status: "error",
                 duration: 5000,
                 isClosable: true,
@@ -95,7 +95,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
             });
             return;
         }
-        console.log(selectedChat.groupAdmin._id, user);
+        // console.log(selectedChat.groupAdmin._id, user);
         if (selectedChat.groupAdmin._id !== user.data.id) {
             toast({
                 title: "Only admins can add someone!",
@@ -121,7 +121,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
                 },
                 config
             );
-            console.log(data);
+            // console.log(data);
             setSelectedChat(data);
             setFetchAgain(!fetchAgain);
             setLoading(false);
@@ -140,7 +140,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
     };
 
     const handleRemove = async (user1) => {
-        console.log(user1, user, selectedChat);
+        // console.log(user1, user, selectedChat);
         if (selectedChat.groupAdmin._id !== user.data.id && user1._id !== user.data.id) {
             toast({
                 title: "Only admins can remove someone!",
@@ -166,7 +166,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
                 },
                 config
             );
-            console.log(data);
+            // console.log(data);
 
             user1.data.id === user.data.id ? setSelectedChat() : setSelectedChat(data);
             setFetchAgain(!fetchAgain);

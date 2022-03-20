@@ -77,8 +77,6 @@ const SideDrawer = () => {
     }
 
     const accessChat = async (userId) => {
-        console.log(userId);
-        // console.log(chats);
         try {
             setLodingChat(true);
             const config = {
@@ -92,10 +90,10 @@ const SideDrawer = () => {
             }, config);
             console.log(data);
 
-            if (!chats.find((val) => val._id === data._id))
-                setChats([data, ...chats]);
+            if (!chats.find((val) => val._id === data.chat._id))
+                setChats([data.chat, ...chats]);
             // console.log(chats);
-            setSelectedChat(data);
+            setSelectedChat(data.chat);
             setLodingChat(false);
             onClose();
         } catch (error) {
