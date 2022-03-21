@@ -100,12 +100,11 @@ const SignUp = () => {
                 }
             };
             const { data } = await axios.post("/register", {
-                name,
-                email,
-                password,
-                pic
+                name: name,
+                email: email,
+                password: password,
+                image: pic
             }, config);
-            // console.log(data);
             toast({
                 title: "Registration Successful",
                 status: "success",
