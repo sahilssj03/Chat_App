@@ -7,7 +7,7 @@ import './ScrollableChat.css';
 
 const ScrollableChat = ({ messages }) => {
     const { user } = ChatState();
-    console.log(messages, "Messages New Data");
+    // console.log(messages, "Messages New Data");
     return (
         <ScrollableFeed>
             {messages && messages.map((m, i) =>

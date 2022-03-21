@@ -11,11 +11,6 @@ router.post('/register', [verifySignUp.checkDuplicateEmail], auth.register);
 // User Login
 router.post('/login', auth.login)
 
-// Token Validation
-router.get('/', [verifyToken.tokenValidation], async (req, res) => {
-    res.json({ message: req.user })
-})
-
 // Confirm User Account
 router.get('/confirm/:confirmationCode', auth.verifyUser)
 

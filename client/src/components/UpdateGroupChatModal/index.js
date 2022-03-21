@@ -67,7 +67,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
 
             // console.log(data._id, data);
             // setSelectedChat("");
-            setSelectedChat(data);
+            setSelectedChat(data.chat);
             setFetchAgain(!fetchAgain);
             setRenameLoading(false);
         } catch (error) {
@@ -121,8 +121,8 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
                 },
                 config
             );
-            // console.log(data);
-            setSelectedChat(data);
+
+            setSelectedChat(data.chat);
             setFetchAgain(!fetchAgain);
             setLoading(false);
         } catch (error) {
@@ -166,16 +166,14 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
                 },
                 config
             );
-            // console.log(data);
-
-            user1.data.id === user.data.id ? setSelectedChat() : setSelectedChat(data);
+            user1._id === user.data.id ? setSelectedChat() : setSelectedChat(data.chat);
             setFetchAgain(!fetchAgain);
             fetchMessages();
             setLoading(false);
         } catch (error) {
             toast({
                 title: "Error Occured!",
-                description: error.response.data.message,
+                // description: error.response.data.message,
                 status: "error",
                 duration: 5000,
                 isClosable: true,

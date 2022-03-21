@@ -36,6 +36,7 @@ const SideDrawer = () => {
     const logOutHandler = () => {
         localStorage.removeItem("userInformation");
         history("/");
+        window.location.reload()
     };
 
 
@@ -88,7 +89,6 @@ const SideDrawer = () => {
             const { data } = await axios.post("/chat", {
                 id: userId
             }, config);
-            console.log(data);
 
             if (!chats.find((val) => val._id === data.chat._id))
                 setChats([data.chat, ...chats]);

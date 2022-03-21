@@ -194,7 +194,7 @@ removeFromGroup = async (req, res) => {
     const requestingUserId = req.user.id
 
     const adminId = await Chat.findById(chatId);
-    if (adminId.groupAdmin.toString() === requestingUserId) {
+    if (adminId.groupAdmin.toString() === requestingUserId || requestingUserId === userId) {
         const remove = await Chat.findByIdAndUpdate(chatId,
             { $pull: { users: userId } },
             {

@@ -65,10 +65,10 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                     content: newMessage
                 }, config);
                 // console.log(data);
-                console.log(messages, "Messages data");
-                console.log(data.message, "Messages Content");
+                // console.log(messages, "Messages data");
+                // console.log(data.message, "Messages Content");
                 setMessages([...messages, data.message]);
-                console.log(messages);
+                // console.log(messages);
                 setFetchAgain(!fetchAgain);
             } catch (error) {
                 toast({
