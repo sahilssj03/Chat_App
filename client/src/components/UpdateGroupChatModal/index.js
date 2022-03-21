@@ -199,7 +199,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
                         <Box w="100%" d="flex" flexWrap="wrap" mb={2}>
                             {selectedChat.users.map(u => (
                                 <UserBadgeItem
-                                    key={user.data.id}
+                                    key={u._id}
                                     user={u}
                                     handleFunction={() => handleRemove(u)}
                                 />
@@ -207,7 +207,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
                         </Box>
                         <FormControl d="flex">
                             <Input
-                                placeholder="Chat Name"
+                                placeholder={selectedChat.chatName}
                                 mb={3}
                                 value={groupChatName}
                                 onChange={(e) => setGroupChatName(e.target.value)}

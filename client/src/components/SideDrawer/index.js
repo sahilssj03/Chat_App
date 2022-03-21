@@ -113,7 +113,7 @@ const SideDrawer = () => {
             <Box className='upper-box'>
                 <Tooltip label="Search Users to Chat" hasArrow placement='bottom-end'>
                     <Button bg="white" onClick={onOpen}>
-                        <i class="fas fa-search"></i>
+                        <i className="fas fa-search"></i>
                         <Text className='search-text'>Search User</Text>
                     </Button>
                 </Tooltip>
