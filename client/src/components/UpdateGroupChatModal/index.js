@@ -69,11 +69,18 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
             // setSelectedChat("");
             setSelectedChat(data.chat);
             setFetchAgain(!fetchAgain);
+            toast({
+                title: "Group Rename Successful",
+                status: "success",
+                duration: 5000,
+                isClosable: true,
+                position: "bottom",
+            });
             setRenameLoading(false);
+
         } catch (error) {
             toast({
                 title: "Error Occured!",
-                // description: error.response.data.message,
                 status: "error",
                 duration: 5000,
                 isClosable: true,
@@ -169,11 +176,17 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
             (user1._id || user1.id) === user.data.id ? setSelectedChat() : setSelectedChat(data.chat);
             setFetchAgain(!fetchAgain);
             fetchMessages();
+            toast({
+                title: "User Removed Successfully",
+                status: "success",
+                duration: 5000,
+                isClosable: true,
+                position: "bottom",
+            });
             setLoading(false);
         } catch (error) {
             toast({
                 title: "Error Occured!",
-                // description: error.response.data.message,
                 status: "error",
                 duration: 5000,
                 isClosable: true,

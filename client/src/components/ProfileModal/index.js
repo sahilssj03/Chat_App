@@ -6,7 +6,7 @@ import { ChatState } from '../../Context/ChatProvider';
 import './ProfileModal.css';
 import { ViewIcon } from '@chakra-ui/icons';
 
-const ProfileModal = ({ children }) => {
+const ProfileModal = ({ userData, children }) => {
     const { user } = ChatState();
     const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -22,14 +22,16 @@ const ProfileModal = ({ children }) => {
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader className='modal-header'>{user.data.name}</ModalHeader>
+                    <ModalHeader className='modal-header'>
+                        {userData ? userData.name : user.data.name}
+                    </ModalHeader>
                     <ModalCloseButton />
                     <ModalBody className='modal-body'>
                         <Image
                             className='modal-image'
-                            src={user.data.image}
+                            src={userData ? userData.image : user.data.image}
                         />
-                        <Text className='modal-email'>{user.data.email}</Text>
+                        <Text className='modal-email'>{userData ? userData.email : user.data.email}</Text>
                     </ModalBody>
 
                     <ModalFooter>

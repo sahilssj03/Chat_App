@@ -106,15 +106,13 @@ const SignUp = () => {
                 image: pic
             }, config);
             toast({
-                title: "Registration Successful",
+                title: "Please Check your Gmail",
                 status: "success",
-                duration: 5000,
+                duration: 10000,
                 isClosable: true,
                 position: "bottom",
             });
-            localStorage.setItem("userInformation", JSON.stringify(data));
             setPicLoading(false);
-            history("/chats");
         } catch (err) {
             toast({
                 title: "Error Occured!",
