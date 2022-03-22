@@ -140,7 +140,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
     };
 
     const handleRemove = async (user1) => {
-        // console.log(user1, user, selectedChat);
+        console.log(user1, selectedChat._id);
         if (selectedChat.groupAdmin._id !== user.data.id && user1._id !== user.data.id) {
             toast({
                 title: "Only admins can remove someone!",
