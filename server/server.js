@@ -31,11 +31,10 @@ const io = require('socket.io')(server, {
 })
 
 io.on("connection", (socket) => {
-  console.log(socket)
-  console.log("Connected to socket.io");
+  // console.log(socket)
 
   socket.on("setup", (userData) => {
-    socket.join(userData._id);
+    socket.join(userData.data.id);
     socket.emit("connected");
   });
 
@@ -48,14 +47,13 @@ io.on("connection", (socket) => {
   socket.on("stop typing", (room) => socket.in(room).emit("stop typing"));
 
   socket.on("new Message", (newMessageRecieved) => {
-    var chat = newMessageRecieved.chat;
-    console.log(newMessageRecieved);
+    var chat = newMessageRecieved.message.chat;
+
     if (!chat.users) return console.log("chat.users not defined");
 
     chat.users.forEach((user) => {
-      if (user._id == newMessageRecieved.sender._id) return;
-
-      socket.in(user._id).emit("message recieved", newMessageRecieved);
+      if (user._id == newMessageRecieved.message.sender._id) return;
+      socket.in(user._id).emit("message recieved", newMessageRecieved)
     });
   });
 

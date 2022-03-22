@@ -11,7 +11,7 @@ import ScrollableChat from '../ScrollableChat';
 
 import io from 'socket.io-client';
 
-const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = "http://127.0.0.1:5000";
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
@@ -62,21 +62,19 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     useEffect(() => {
         socket = io(ENDPOINT);
         socket.emit("setup", user);
-        socket.on("connection", () => setSocketConnected(true));
+        console.log(socket.emit("setup", user))
+        socket.on("connected", () => setSocketConnected(true));
     }, [])
 
-    
+
 
     useEffect(() => {
-        // console.log("Hi");
         socket.on("message recieved", (newMessageRecieved) => {
-            console.log("Hi");
-            if (!selectedChatCompare || selectedChatCompare._id !== newMessageRecieved.chat._id) {
+            if (!selectedChatCompare || selectedChatCompare._id !== newMessageRecieved.message.chat._id) {
                 console.log("qwer");
             }
             else {
-                console.log(newMessageRecieved);
-                setMessages([...messages, newMessageRecieved]);
+                setMessages([...messages, newMessageRecieved.message]);
             }
         })
     });
@@ -97,6 +95,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 }, config);
 
                 socket.emit("new Message", data)
+                console.log(socket.emit("new Message", data))
 
                 setMessages([...messages, data.message]);
                 setFetchAgain(!fetchAgain);
