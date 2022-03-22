@@ -13,7 +13,7 @@ const ConfirmationHandler = () => {
     const confirmationCode = URL[URL.length - 1]
     const apiCall = async () => {
         setLoading(true);
-        const res = await axios.get('https://ag-chatapp.herokuapp.com/confirm/' + confirmationCode)
+        const res = await axios.get('http://localhost:5000/confirm/' + confirmationCode)
         localStorage.setItem('userInformation', JSON.stringify(res.data));
         setLoading(false);
         const userInfo = JSON.parse(localStorage.getItem("userInformation"));
