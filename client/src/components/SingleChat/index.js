@@ -75,7 +75,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         socket = io(ENDPOINT);
         socket.emit("setup", user);
         socket.on("connected", () => setSocketConnected(true));
-        socket.on("typing", () => setTyping(true));
+        socket.on("typing", () => setIsTyping(true));
         socket.on("stop typing", () => setIsTyping(false));
     }, [])
 
@@ -148,9 +148,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             }
         }, timerLength);
     }
-
-
-
 
     return (
         <>

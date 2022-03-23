@@ -35,7 +35,7 @@ const ProfileModal = ({ userData, children }) => {
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button mr={3} onClick={onClose}>
+                        <Button onClick={onClose}>
                             Close
                         </Button>
                     </ModalFooter>
