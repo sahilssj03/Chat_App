@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const ConfirmationHandler = () => {
     const [loading, setLoading] = useState(false);
+    const user = JSON.parse(localStorage.getItem("userInformation"));
 
     const history = useNavigate();
 
@@ -13,19 +14,26 @@ const ConfirmationHandler = () => {
     const confirmationCode = URL[URL.length - 1]
     const apiCall = async () => {
         setLoading(true);
-        const res = await axios.get('http://localhost:5000/confirm/' + confirmationCode)
+        const res = await axios.get('https://ag-chatapp.herokuapp.com/confirm/' + confirmationCode)
         localStorage.setItem('userInformation', JSON.stringify(res.data));
-        setLoading(false);
+        console.log(localStorage.setItem('userInformation', JSON.stringify(res.data)))
         const userInfo = JSON.parse(localStorage.getItem("userInformation"));
-        if(userInfo)
+        setLoading(false);
+        if (userInfo) {
             history("/chats");
+        }
     }
     useEffect(() => {
-        apiCall();
+        if (user == null) {
+            apiCall();
+        }
+        else {
+            history("/chats");
+        }
     }, [confirmationCode])
     return (
         <div>
-            {loading ? <Spinner /> : <div>Confirmation</div>}
+            {loading ? <Spinner /> : null}
         </div>
     )
 }
