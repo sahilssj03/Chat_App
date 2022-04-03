@@ -18,9 +18,9 @@ const Login = () => {
         setShow(!show);
     }
 
-    const submitHandler = async() => {
+    const submitHandler = async () => {
         setPicLoading(true);
-        if ( !email || !password) {
+        if (!email || !password) {
             toast({
                 title: "Please Fill all the Feilds",
                 status: "warning",
@@ -38,7 +38,7 @@ const Login = () => {
                     "Content-type": "application/json",
                 }
             };
-            const { data } = await axios.post("/login", {
+            const { data } = await axios.post("https://ag-chatapp.herokuapp.com/login", {
                 email,
                 password,
             }, config);
@@ -88,7 +88,7 @@ const Login = () => {
                     </InputRightElement>
                 </InputGroup>
             </FormControl>
-            
+
 
             <Button
                 onClick={submitHandler}

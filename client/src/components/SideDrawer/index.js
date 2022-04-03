@@ -61,7 +61,7 @@ const SideDrawer = () => {
                 }
             };
 
-            const { data } = await axios.get(`/users?search=${search}`, config);
+            const { data } = await axios.get(`https://ag-chatapp.herokuapp.com/users?search=${search}`, config);
             setLoading(false);
             setSearchResult(data.users);
             // console.log(data.users);
@@ -86,7 +86,7 @@ const SideDrawer = () => {
                     Authorization: `Bearer ${user.data.accessToken}`,
                 }
             };
-            const { data } = await axios.post("/chat", {
+            const { data } = await axios.post("https://ag-chatapp.herokuapp.com/chat", {
                 id: userId
             }, config);
 

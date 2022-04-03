@@ -1,0 +1,4 @@
+[[redirects]]
+  from = "/*"
+  to = "https://ag-chat-app.netlify.app/"
+  status = 200

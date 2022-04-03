@@ -32,7 +32,7 @@ const GroupChatModal = ({ children }) => {
                     Authorization: `Bearer ${user.data.accessToken}`
                 }
             };
-            const { data } = await axios.get(`/users?search=${search}`, config);
+            const { data } = await axios.get(`https://ag-chatapp.herokuapp.com/users?search=${search}`, config);
             // console.log(data.users);
             setLoading(false);
             setSearchResult(data.users);
@@ -66,7 +66,7 @@ const GroupChatModal = ({ children }) => {
                     Authorization: `Bearer ${user.data.accessToken}`
                 }
             };
-            const { data } = await axios.post("/group", {
+            const { data } = await axios.post("https://ag-chatapp.herokuapp.com/group", {
                 name: groupChatName,
                 users: JSON.stringify(selectedUsers.map((u) => u._id))
             }, config);

@@ -22,7 +22,7 @@ const MyChats = ({ fetchAgain }) => {
           Authorization: `Bearer ${user.data.accessToken}`,
         }
       };
-      const { data } = await axios.get('/chat', config);
+      const { data } = await axios.get('https://ag-chatapp.herokuapp.com/chat', config);
       setChats(data.chats);
       // console.log(data.chats);
     } catch (error) {

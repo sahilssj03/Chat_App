@@ -30,7 +30,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
                     Authorization: `Bearer ${user.data.accessToken}`
                 }
             };
-            const { data } = await axios.get(`/users?search=${search}`, config);
+            const { data } = await axios.get(`https://ag-chatapp.herokuapp.com/users?search=${search}`, config);
             // console.log(data.users);
             setLoading(false);
             setSearchResult(data.users);
@@ -57,7 +57,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
                     Authorization: `Bearer ${user.data.accessToken}`,
                 },
             };
-            const { data } = await axios.put("/rename",
+            const { data } = await axios.put("https://ag-chatapp.herokuapp.com/rename",
                 {
                     name: groupChatName,
                     id: selectedChat._id,
@@ -121,7 +121,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
                     Authorization: `Bearer ${user.data.accessToken}`,
                 },
             };
-            const { data } = await axios.put("/groupadd",
+            const { data } = await axios.put("https://ag-chatapp.herokuapp.com/groupadd",
                 {
                     id: selectedChat._id,
                     user: user1._id,
@@ -166,7 +166,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
                     Authorization: `Bearer ${user.data.accessToken}`,
                 },
             };
-            const { data } = await axios.put("/groupremove",
+            const { data } = await axios.put("https://ag-chatapp.herokuapp.com/groupremove",
                 {
                     id: selectedChat._id,
                     user: (user1._id || user1.id)
