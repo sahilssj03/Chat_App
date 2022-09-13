@@ -38,7 +38,7 @@ const Login = () => {
                     "Content-type": "application/json",
                 }
             };
-            const { data } = await axios.post("https://ag-chatapp.herokuapp.com/login", {
+            const { data } = await axios.post("https://ag-chat-app-node.herokuapp.com/login", {
                 email,
                 password,
             }, config);

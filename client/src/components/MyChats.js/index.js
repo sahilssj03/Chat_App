@@ -22,7 +22,7 @@ const MyChats = ({ fetchAgain }) => {
           Authorization: `Bearer ${user.data.accessToken}`,
         }
       };
-      const { data } = await axios.get('https://ag-chatapp.herokuapp.com/chat', config);
+      const { data } = await axios.get('https://ag-chat-app-node.herokuapp.com/chat', config);
       setChats(data.chats);
       // console.log(data.chats);
     } catch (error) {
@@ -53,7 +53,7 @@ const MyChats = ({ fetchAgain }) => {
       <Box className='secondaryMainBox'>
         My Chats
         <GroupChatModal>
-          <Button rightIcon={<AddIcon />}>New Group Chat</Button>
+          <Button rightIcon={<AddIcon /> } style={{whiteSpace: "normal", height: "auto"}}>New Group Chat</Button>
         </GroupChatModal>
       </Box>
       <Box

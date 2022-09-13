@@ -12,7 +12,7 @@ import Lottie from "react-lottie";
 import animationData from "../../animations/typing.json";
 import io from 'socket.io-client';
 
-const ENDPOINT = "https://ag-chatapp.herokuapp.com";
+const ENDPOINT = "https://ag-chat-app-node.herokuapp.com";
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
@@ -45,7 +45,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                     Authorization: `Bearer ${user.data.accessToken}`
                 }
             };
-            const { data } = await axios.get(`https://ag-chatapp.herokuapp.com/${selectedChat._id}`, config);
+            const { data } = await axios.get(`https://ag-chat-app-node.herokuapp.com/${selectedChat._id}`, config);
             setMessages(data.message);
             setLoading(false);
 
@@ -103,7 +103,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                     }
                 };
                 setNewMessage("");
-                const { data } = await axios.post("https://ag-chatapp.herokuapp.com/message", {
+                const { data } = await axios.post("https://ag-chat-app-node.herokuapp.com/message", {
                     chatId: selectedChat._id,
                     content: newMessage
                 }, config);

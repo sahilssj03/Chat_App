@@ -99,7 +99,7 @@ const SignUp = () => {
                     "Content-type": "application/json",
                 }
             };
-            const { data } = await axios.post("https://ag-chatapp.herokuapp.com/register", {
+            const { data } = await axios.post("https://ag-chat-app-node.herokuapp.com/register", {
                 name: name,
                 email: email,
                 password: password,

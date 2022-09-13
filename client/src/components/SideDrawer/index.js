@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { BellIcon, ChevronDownIcon } from '@chakra-ui/icons';
+import { ChevronDownIcon } from '@chakra-ui/icons';
 import { Avatar, Box, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Input, Menu, MenuButton, MenuDivider, MenuItem, MenuList, Spinner, Text, Tooltip, useToast } from '@chakra-ui/react';
 import React, { useState, useEffect } from 'react'
 import { useDisclosure } from "@chakra-ui/hooks";
@@ -61,7 +61,7 @@ const SideDrawer = () => {
                 }
             };
 
-            const { data } = await axios.get(`https://ag-chatapp.herokuapp.com/users?search=${search}`, config);
+            const { data } = await axios.get(`https://ag-chat-app-node.herokuapp.com/users?search=${search}`, config);
             setLoading(false);
             setSearchResult(data.users);
             // console.log(data.users);
@@ -86,7 +86,7 @@ const SideDrawer = () => {
                     Authorization: `Bearer ${user.data.accessToken}`,
                 }
             };
-            const { data } = await axios.post("https://ag-chatapp.herokuapp.com/chat", {
+            const { data } = await axios.post("https://ag-chat-app-node.herokuapp.com/chat", {
                 id: userId
             }, config);
 
@@ -119,11 +119,11 @@ const SideDrawer = () => {
                 </Tooltip>
                 <Text className='logo-text'>Chat-App</Text>
                 <div>
-                    <Menu>
+                    {/* <Menu>
                         <MenuButton>
                             <BellIcon style={{ fontSize: '25px' }} />
                         </MenuButton>
-                    </Menu>
+                    </Menu> */}
                     <Menu>
                         <MenuButton as={Button} rightIcon={<ChevronDownIcon />} className='profile-menu'>
                             <Avatar src={user.data.image} size="sm" />
