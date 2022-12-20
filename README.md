@@ -10,8 +10,7 @@ A realtime chat app built using React.js, Node.js and Socket.io. With proper aut
 
 ## Authors
 
-- [Anuj](https://github.com/Anuj1p)
-- [Gaurav Yadav](https://github.com/theydvgaurav)
+- [Sahil](https://github.com/sahilssj03)
 
 
 ## API Reference
